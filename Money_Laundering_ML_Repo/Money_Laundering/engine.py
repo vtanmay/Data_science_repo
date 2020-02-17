@@ -1,4 +1,4 @@
-import Money_Laundering.businessLogic as mlbl
+import Money_Laundering_ML_Repo.Money_Laundering.businessLogic as mlbl
 
 # get all titles
 # get page 1 titles

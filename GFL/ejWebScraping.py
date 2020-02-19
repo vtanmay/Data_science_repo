@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-#import ejagruti.gfl.ejFileOperations as fop
 from lxml import etree
 
 def getHeaderObject(ejListOfKeyValuePairs=None):
@@ -46,7 +45,10 @@ def getValueByCSSSelector(ejPageContent=None,ejCSS=None):
     soupobj = BeautifulSoup(ejPageContent, 'html.parser')
     val=eval("soupobj."+ejCSS)
     return val
-
+def getValueByQuerySelector(ejPageContent=None,ejQSS=None):
+    soup = BeautifulSoup(ejPageContent, 'html.parser')
+    val = soup.select(ejQSS)
+    return val
 #
 # op=fop.readEntireFile(ejFilePath="f:\html.txt")
 # pobj=findMatchingElementOrElementsByXPath(ejPageContent=op,ejXPath="//td[.='FII']/..")

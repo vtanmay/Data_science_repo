@@ -1,6 +1,9 @@
 import Money_Laundering_ML_Repo.Money_Laundering.businessLogic as mlbl
 import pandas as pd
 
+titleList=[]
+linkList = []
+textList = []
 # get all titles
 # get all  titles from 5 pages
 allTitles1 = mlbl.getSearchResultTitle(ejURL="https://www.google.com/search?q=dsk+developers+ltd&oq=dsk+developers+ltd&aqs=chrome..69i57.10393j0j7&sourceid=chrome&ie=UTF-8", ejXPath='//div[@id="search"]//div[@class="r"]//a//cite')
@@ -15,6 +18,7 @@ print(" ===== count of all titles are =====", len(allTitles))
 print(" ===== all titles are =====\n")
 for i in range(len(allTitles)):
     print(allTitles[i].text)
+    titleList.append(allTitles[i].text)
 
 # get all URL
 # get page 5 URL
@@ -29,6 +33,7 @@ print(" ===== count of all URLs are =====", len(allLinks))
 print(" ===== all URLs are =====\n")
 for i in range(len(allLinks)):
     print(allLinks[i].text)
+    linkList.append(allLinks[i].text)
 
    # get all Text
    # get page 1 Text
@@ -44,25 +49,15 @@ print(" ===== count of all texts are =====", len(allText))
 print(" ===== all texts are =====\n")
 for i in range(len(allText)):
     print(allText[i].text)
+    textList.append(allText[i].text)
 
+# Add list to data frame
+df = pd.DataFrame({'Titles': titleList, 'Links': linkList, 'Text': textList})
+df = df.replace({r'\s+$': '', r'^\s+': ''}, regex=True).replace(r'\n',  ' ', regex=True)
 
-
-# storing titles and links in dataframe.
-#df = pd.DataFrame(allTitles.text)
-#df = pd.DataFrame({'AllTitles':allTitles,'AllLinks':allLinks})
-#print(" ===== printing data frame =====\n")
-#print(df)
-#df.to_csv('products.csv', index=False, encoding='utf-8')
-
-
-# get all Text
-# get page 1 Text
-# //div[@class='s'] , //span[@class="st"]
-# allText = mlbl.getSearchResultText(ejURL="https://www.google.com/search?q=dsk+developers+ltd&oq=dsk+developers+ltd&aqs=chrome..69i57.10393j0j7&sourceid=chrome&ie=UTF-8",ejXPath='//div[@class="s"]')
-# print(" ===== count of all texts are =====", len(allText))
-# print(" ===== all texts are =====\n")
-# for i in range(len(allText)):
-#     print(allText[i].text)
+print("------Titles------",df['Titles'])
+print("------Links------",df['Links'])
+print("------Text------",df['Text'])
 
 
 

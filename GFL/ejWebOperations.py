@@ -3,8 +3,8 @@ from selenium import webdriver
 class ejWebOperations:
     driver=None
     # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads and put it in the
-    # c:\DRIVER folder and makesure the name of the exe is chromedriver.exe and should be compatible with the current driver version
-    def __init__(self, ejShowBrowser=False,ejChromeDriverExePath="D:\Data Science\Manish_Sir_class\MoneyLaundering_ML_Proj\Drivers\chromedriver.exe"):
+    # c:\DRIVER folder and makesure the name of the exe is chromedriver.exe and should be compatible with the current browser version
+    def __init__(self, ejShowBrowser=False,ejChromeDriverExePath="c:\driver\chromedriver.exe"):
         # instantiate a chrome options object so you can set the size and headless preference
         chrome_options = Options()
         if ejShowBrowser==False:
@@ -20,7 +20,7 @@ class ejWebOperations:
             self.driver.get(ejURL)
        else:
             self.driver.get("http://"+ejURL)
-       return self.driver.page_source
+       return ejWebOperations.driver.page_source
     def getWebElements(self,ejXPath=None):
         return self.driver.find_elements_by_xpath(ejXPath)
 

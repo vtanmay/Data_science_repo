@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import gfl.ejFileOperations as fop
 from lxml import etree
 
 def getHeaderObject(ejListOfKeyValuePairs=None):
@@ -9,13 +10,12 @@ def getHeaderObject(ejListOfKeyValuePairs=None):
     return headers
 def getPageContent(ejURL=None,ejHeaderDictObj=None):
     if ejHeaderDictObj is None:
-        page = requests.get(ejURL,headers={"User-Agent":"XY"})
+        page = requests.get(ejURL,headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"})
     else:
         page=requests.get(ejURL,headers=ejHeaderDictObj)
     page_html_code = BeautifulSoup(page.content, 'html.parser')
-    #return page.content
-    return page_html_code.prettify()
-def findMatchingElementOrElementsByXPath(ejPageContent=None,ejXPath=None):
+    return page.content
+def findMatchingElementsByXPath(ejPageContent=None,ejXPath=None):
     dom=etree.HTML(ejPageContent)
     all_web_elements=dom.xpath(ejXPath)
     return all_web_elements
@@ -37,18 +37,18 @@ def getInnerHTML(ejWebElement=None):
     for e in ejWebElement.iterchildren():
         val=val+str(etree.tostring(e))
     return val
-def getAttribute(ejWebElement=None):
+def getAttributeName(ejWebElement=None):
     return ejWebElement.attrib
+def getAttributeValue(ejWebElement=None,ejAttributeName=None):
+    return ejWebElement.attrib[ejAttributeName]
 def getText(ejWebElement=None):
     return ejWebElement.text
+
 def getValueByCSSSelector(ejPageContent=None,ejCSS=None):
     soupobj = BeautifulSoup(ejPageContent, 'html.parser')
     val=eval("soupobj."+ejCSS)
     return val
-def getValueByQuerySelector(ejPageContent=None,ejQSS=None):
-    soup = BeautifulSoup(ejPageContent, 'html.parser')
-    val = soup.select(ejQSS)
-    return val
+
 #
 # op=fop.readEntireFile(ejFilePath="f:\html.txt")
 # pobj=findMatchingElementOrElementsByXPath(ejPageContent=op,ejXPath="//td[.='FII']/..")

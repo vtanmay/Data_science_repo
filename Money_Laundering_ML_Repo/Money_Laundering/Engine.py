@@ -1,11 +1,11 @@
 import os
-import gfl.ejConfig as ejconf
-import gfl.ejGeneric as ejgen
-import gfl.ejFileOperations as ejfo
-import gfl.ejWebScraping as ejws
+import GFL.ejConfig as ejconf
+import GFL.ejGeneric as ejgen
+import GFL.ejFileOperations as ejfo
+import GFL.ejWebScraping as ejws
 import Money_Laundering_ML_Repo.Money_Laundering.BusinessLogic as bl
 import pandas as pd
-import gfl.ejStats as ejsts
+import GFL.ejStats as ejsts
 # cnfdict=ejconf.readConfigFile(ejConfigFilePath=os.getcwd()+"/config.ini")#read config file
 # filepath=cnfdict["RISK"]["file_path"]#get file path
 # listofmandatorykeywords=bl.getAllMandatoryKeywords(ejFilePath=filepath)

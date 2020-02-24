@@ -1,5 +1,5 @@
-import gfl.ejWebScraping as ejws
-import gfl.ejPanda as ejpd
+import GFL.ejWebScraping as ejws
+import GFL.ejPanda as ejpd
 # wd=ejweb.ejWebOperations(ejShowBrowser=False,ejChromeDriverExePath="F:\ML\DataScienceProject\RiskPrediction\DRIVER\chromedriver.exe")
 # result=wd.getPageSource(ejURL="www.rediffmail.com")
 #print(result)
@@ -52,10 +52,10 @@ def getRegulatorySitesDataFromExcelSheet(ejFilePath=None, ejSheetName=None):
 #
 #
 #
-# import ejagruti.gfl.ejPanda as ejpd
-# import ejagruti.gfl.ejConfig as ejcfg
+# import ejagruti.GFL.ejPanda as ejpd
+# import ejagruti.GFL.ejConfig as ejcfg
 # import requests
-# import ejagruti.gfl.ejWebScraper as ejws
+# import ejagruti.GFL.ejWebScraper as ejws
 # from bs4 import BeautifulSoup
 # import re
 # import mechanize

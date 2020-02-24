@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import gfl.ejFileOperations as fop
+import GFL.ejFileOperations as fop
 from lxml import etree
 
 def getHeaderObject(ejListOfKeyValuePairs=None):

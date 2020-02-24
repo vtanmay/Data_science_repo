@@ -1,7 +1,7 @@
 import csv
 import zipfile,requests,io,os
 from pathlib import Path
-import gfl as ejgen
+import GFL as ejgen
 from zipfile import ZipFile
 
 def convertByteToString(ejByteText=None):

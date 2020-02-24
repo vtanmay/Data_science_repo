@@ -1,6 +1,6 @@
 import json,requests
 import jmespath #http://jmespath.org/tutorial.html
-import gfl.ejFileOperations as ejfo
+import GFL.ejFileOperations as ejfo
 
 def createBlankJSONFile(ejFilePath=None):
     ejfo.writeToCSVFile(ejFilePath=ejFilePath,ejDataToAppend="{}")

@@ -32,12 +32,14 @@ for pn in range(0,ejPageNumber):
     textList.extend(allTexts)
     titleList.extend(allTitle)
 
-print(urlList)
-print(textList)
-print(titleList)
+print("==== all URLs ====", urlList)
+print("==== all Text ====", textList)
+print("==== all Titles ====", titleList)
 
 # read media sites data from excel
-loc = ("D:\Data Science\Manish_Sir_class\Data_science_repo\DataSheet\RiskPrediction2017.xlsx")
+#D:\Personal\ML\Data_science_repo
+#D:\Data Science\Manish_Sir_class\Data_science_repo\DataSheet\RiskPrediction2017.xlsx
+loc = (ejfo.getCurrentWorkingDirecotry()+"\RiskPrediction2017.xlsx")
 listOfMediaSites = bl.getMediaSitesDataFromExcelSheet(loc,"Media Sites")
 print("==== list of media sites data======")
 print(listOfMediaSites)

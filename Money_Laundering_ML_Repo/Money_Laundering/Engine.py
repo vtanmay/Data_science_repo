@@ -4,6 +4,8 @@ import GFL.ejGeneric as ejgen
 import GFL.ejFileOperations as ejfo
 import GFL.ejWebScraping as ejws
 import Money_Laundering_ML_Repo.Money_Laundering.BusinessLogic as bl
+import re
+from itertools import compress
 import pandas as pd
 import GFL.ejStats as ejsts
 # cnfdict=ejconf.readConfigFile(ejConfigFilePath=os.getcwd()+"/config.ini")#read config file
@@ -14,7 +16,9 @@ import GFL.ejStats as ejsts
 # dict=bl.getSearchResultFromGoogle(ejSearchURL=google_url,ejSearchText="riskpro pune review",ejSearchResultUpToPage=5)
 titleList=[]
 urlList = []
+newUrlList = []
 textList = []
+newRegulatoryUrlList = []
 
 ejSearchContent="DSK"
 ejPageNumber=5
@@ -33,8 +37,8 @@ for pn in range(0,ejPageNumber):
     titleList.extend(allTitle)
 
 print("==== all URLs ====", urlList)
-print("==== all Text ====", textList)
-print("==== all Titles ====", titleList)
+#print("==== all Text ====", textList)
+#print("==== all Titles ====", titleList)
 
 # read media sites data from excel
 #D:\Personal\ML\Data_science_repo
@@ -49,6 +53,38 @@ listOfRegulatorySites = bl.getRegulatorySitesDataFromExcelSheet(loc,"Regulatory 
 print("==== list of regulatory sites data=====")
 print(listOfRegulatorySites)
 
+# get all URLs after splitting
+#urlListAfterSplit = bl.getAllUrlsAfterSpliting(ejList=urlList, ejSeparator='//',ejMaxSplit=1)[1]
+
+for i in urlList:
+    newUrlList.append(i.split('//', 1)[1].split('/', 1)[0])
+
+print("===== split url list====", newUrlList)
+tempList = []
+
+for i in listOfMediaSites:
+    if 'http' in i:
+        tempList.append(i.split('//', 1)[1].split('/', 1)[0].split('.', 1)[0])
+    tempList.append(i.split('.', 1)[0])
+
+print("===== extract domain name for media sites from excel===", tempList)
+
+
+
+#for i in listOfRegulatorySites:
+#    newRegulatoryUrlList.append(i.split('//', 1)[1].split('/', 1)[0])
+
+#print("===== split regulatory url list====", newRegulatoryUrlList)
+
+#for i in range(len(listOfMediaSites)):
+   # for j in newUrlList:
+  #      if listOfMediaSites[i]  == 'hindustantimes.com':
+  #          listWithFilter1.append(listOfMediaSites[i])
+    #if i == 'hindustantimes.com':
+
+
+
+# compare
 # verify keywords.
 
 #  #Add list to data frame

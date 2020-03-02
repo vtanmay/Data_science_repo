@@ -20,7 +20,7 @@ newUrlList = []
 textList = []
 newRegulatoryUrlList = []
 
-ejSearchContent="DSK"
+ejSearchContent="Vijay mallya"
 ejPageNumber=5
 search_url="https://www.google.co.in"
 prefix="/search?q=XXX&start=YYY0&sa=N"
@@ -45,12 +45,12 @@ print("==== all URLs ====", urlList)
 #D:\Data Science\Manish_Sir_class\Data_science_repo\DataSheet\RiskPrediction2017.xlsx
 loc = (ejfo.getCurrentWorkingDirecotry()+"\RiskPrediction2017.xlsx")
 listOfMediaSites = bl.getMediaSitesDataFromExcelSheet(loc,"Media Sites")
-print("==== list of media sites data======")
+print("==== list of media sites data from excel ======")
 print(listOfMediaSites)
 
 # read regulatory sites data from excel
 listOfRegulatorySites = bl.getRegulatorySitesDataFromExcelSheet(loc,"Regulatory Websites")
-print("==== list of regulatory sites data=====")
+print("==== list of regulatory sites data from excel =====")
 print(listOfRegulatorySites)
 
 # get all URLs after splitting

@@ -49,6 +49,14 @@ def getRegulatorySitesDataFromExcelSheet(ejFilePath=None, ejSheetName=None):
         listData = ejpd.getColumnDataAsAListFromTable(ejDataFrame=df, ejOptColumnIndex=1)
         return listData
 
+def getUrlsWithMediaOrRegulatoryWebsites(ejAllUrlList=None, ejMediaOrRegulatoryList=None):
+    newList = []
+    for i in ejMediaOrRegulatoryList:
+        for j in ejAllUrlList:
+            if i in j:
+                newList.append(j)
+    return newList
+
 def getAllUrlsAfterSpliting(ejList=None, ejSeparator=None, ejMaxSplit=1):
     splitUrlList = ejlstop.getListAfterSpliting(ejList=ejList, ejSeparator=ejSeparator, ejMaxSplit=ejMaxSplit)
     return splitUrlList

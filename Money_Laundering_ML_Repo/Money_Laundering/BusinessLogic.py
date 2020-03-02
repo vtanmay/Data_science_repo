@@ -1,5 +1,6 @@
 import GFL.ejWebScraping as ejws
 import GFL.ejPanda as ejpd
+import GFL.ejListOperations as ejlstop
 # wd=ejweb.ejWebOperations(ejShowBrowser=False,ejChromeDriverExePath="F:\ML\DataScienceProject\RiskPrediction\DRIVER\chromedriver.exe")
 # result=wd.getPageSource(ejURL="www.rediffmail.com")
 #print(result)
@@ -47,6 +48,10 @@ def getRegulatorySitesDataFromExcelSheet(ejFilePath=None, ejSheetName=None):
         df = ejpd.readXLSFile(ejFilePath, ejSheetName)
         listData = ejpd.getColumnDataAsAListFromTable(ejDataFrame=df, ejOptColumnIndex=1)
         return listData
+
+def getAllUrlsAfterSpliting(ejList=None, ejSeparator=None, ejMaxSplit=1):
+    splitUrlList = ejlstop.getListAfterSpliting(ejList=ejList, ejSeparator=ejSeparator, ejMaxSplit=ejMaxSplit)
+    return splitUrlList
 
         # import os
 #

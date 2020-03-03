@@ -20,8 +20,8 @@ newUrlList = []
 textList = []
 newRegulatoryUrlList = []
 
-ejSearchContent="Vijay mallya"
-ejPageNumber=5
+ejSearchContent= "dsk developers ltd"
+ejPageNumber=8
 search_url="https://www.google.co.in"
 prefix="/search?q=XXX&start=YYY0&sa=N"
 ejSearchResultURLXPath="//div[@class='rc']/div[@class='r']/a"

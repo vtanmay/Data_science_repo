@@ -10,13 +10,42 @@ allUrls = ['https://en.wikipedia.org/wiki/DSK_Group', 'https://www.hindustantime
 #urlsMatchedWithMediaSites = bl.getUrlsWithMediaOrRegulatoryWebsites(ejAllUrlList=allUrls, ejMediaOrRegulatoryList=listOfMediaSites)
 #urlsMatchedWithRegulatorySites = bl.getUrlsWithMediaOrRegulatoryWebsites(ejAllUrlList=allUrls, ejMediaOrRegulatoryList=listOfRegulatorySites)
 
-# for i in listOfMediaSites:
-#     for j in allUrls:
-#         if i in j:
-#             newList.append(j)
+urlReg1 = []
+for regSiteUrl1 in listOfRegulatorySites:
+    urlReg1.append(re.sub('http://www.', '', regSiteUrl1))
 
-#print("==== matched urls with media sites", urlsMatchedWithMediaSites)
-#print("==== matched urls with regulatory sites", urlsMatchedWithRegulatorySites)
+urlReg2 = []
+for regSiteUrl2 in urlReg1:
+    urlReg2.append(re.sub('https://www.', '', regSiteUrl2))
+
+urlReg3 = []
+for regSiteUrl3 in urlReg2:
+    urlReg3.append(re.sub('https://', '', regSiteUrl3))
+
+urlReg4 = []
+for regSiteUrl4 in urlReg3:
+    urlReg4.append(re.sub('www.', '', regSiteUrl4))
+
+urlReg5 = []
+for regSiteUrl5 in urlReg4:
+    urlReg5.append(re.sub('http://', '', regSiteUrl5))
+
+urlReg6 = []
+for regSiteUrl6 in urlReg5:
+    urlReg6.append(re.sub('\xa0', '', regSiteUrl6))
+
+finalRegUrlListAfterCleanup = []
+for regUrl in urlReg6:
+    finalRegUrlListAfterCleanup.append(regUrl.split('/', 1)[0])
+
+#print("==== final Reg Url List from excel After Cleanup", finalRegUrlListAfterCleanup)
+
+urlsMatchedWithMediaSites = bl.getUrlsWithMediaOrRegulatoryWebsites(ejAllUrlList=allUrls, ejMediaOrRegulatoryList=listOfMediaSites)
+urlsMatchedWithRegulatorySites = bl.getUrlsWithMediaOrRegulatoryWebsites(ejAllUrlList=allUrls, ejMediaOrRegulatoryList=finalRegUrlListAfterCleanup)
+
+print("==== matched urls with media sites", urlsMatchedWithMediaSites)
+print("==== matched urls with regulatory sites", urlsMatchedWithRegulatorySites)
+print("==== final list with matching media and reg sites ===", urlsMatchedWithMediaSites.extend(urlsMatchedWithRegulatorySites))
 
 
 # url = 'abcdc.com'
@@ -24,18 +53,13 @@ allUrls = ['https://en.wikipedia.org/wiki/DSK_Group', 'https://www.hindustantime
 # print(url)
 # hit URLs and search for keywords.
 # use of regex
-urlForRegex = ['http://cvc.nic.in/press.htm','https://www.sec.gov/news/pressreleases','www.goacomtax.gov.in/','http://www.sebi.gov.in/sebiweb/home/list/4/23/0/0/Press-Releases']
+#urlForRegex = ['http://cvc.nic.in/press.htm','https://www.sec.gov/news/pressreleases','www.goacomtax.gov.in/','http://www.sebi.gov.in/sebiweb/home/list/4/23/0/0/Press-Releases']
 #expList - cvc.nic.in, sec.gov, goacomtax.gov.in, sebi.gov.in
 
-reStr = re.sub('http://www.', '', 'http://www.sebi.gov.in/sebiweb/home/list/4/23/0/0/Press-Releases').split('/', 1)[0]
-print("===== with regex====",reStr)
+#reStr = re.sub('http://www.', '', 'http://www.sebi.gov.in/sebiweb/home/list/4/23/0/0/Press-Releases').split('/', 1)[0]
+#print("===== with regex====",reStr)
 #re.sub('/.*?', '',reStr)
 #print("===== with regex====",re.sub('\/$', '',reStr))
-
-
-
-
-
 
 # for i in range(1,8):
 #     if i % 2 != 0:

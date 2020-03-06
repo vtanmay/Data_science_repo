@@ -1,9 +1,16 @@
 import pandas as pd
+import re
 
-def getListAfterSpliting(ejList=None,ejSeparator=None,ejMaxSplit=None):
+def getListAfterRemovingParticularCharSeq(ejList=None, ejCharSeq=None):
+    newList = []
+    for element in ejList:
+        newList.append(re.sub(ejCharSeq, '', element))
+    return newList
+
+def getListAfterSpliting(ejList=None,ejSeparator=None,ejMaxSplit=None, ejSplitPart=None):
     splitList = []
     for i in ejList:
-        splitList.append(i.split(ejSeparator, ejMaxSplit))
+        splitList.append(i.split(ejSeparator, ejMaxSplit)[ejSplitPart])
     return splitList
 
 

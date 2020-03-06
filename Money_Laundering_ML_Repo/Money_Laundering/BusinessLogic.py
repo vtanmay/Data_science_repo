@@ -31,13 +31,6 @@ def getMediaSitesDataFromExcelSheet(ejFilePath=None,ejSheetName=None):
     df = ejpd.readXLSFile(ejFilePath, ejSheetName)
     listData = ejpd.getColumnDataAsAListFromTable(ejDataFrame=df, ejOptColumnIndex=0)
     return listData
-    # listData = []
-    # nestedList = ejpd.readXLSFile(ejFilePath,ejSheetName).values.tolist()
-    # # flatten nested list into a single list
-    # for x in nestedList:
-    #     for y in x:
-    #         listData.append(y)
-    # return listData
 
 def getRegulatorySitesDataFromExcelSheet(ejFilePath=None, ejSheetName=None):
         df = ejpd.readXLSFile(ejFilePath, ejSheetName)
@@ -56,6 +49,7 @@ def getUrlsWithMediaOrRegulatoryWebsites(ejAllUrlList=None, ejMediaOrRegulatoryL
             if i in j:
                 newList.append(j)
     return newList
+
 
 def getAllUrlsAfterSpliting(ejList=None, ejSeparator=None, ejMaxSplit=1):
     splitUrlList = ejlstop.getListAfterSpliting(ejList=ejList, ejSeparator=ejSeparator, ejMaxSplit=ejMaxSplit)

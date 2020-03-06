@@ -1,25 +1,13 @@
-import os
-import GFL.ejConfig as ejconf
-import GFL.ejGeneric as ejgen
 import GFL.ejFileOperations as ejfo
 import GFL.ejWebScraping as ejws
 import Money_Laundering_ML_Repo.Money_Laundering.BusinessLogic as bl
-import re
-from itertools import compress
-import pandas as pd
-import GFL.ejStats as ejsts
-# cnfdict=ejconf.readConfigFile(ejConfigFilePath=os.getcwd()+"/config.ini")#read config file
-# filepath=cnfdict["RISK"]["file_path"]#get file path
-# listofmandatorykeywords=bl.getAllMandatoryKeywords(ejFilePath=filepath)
-# google_url=cnfdict["GOOGLE"]["search_url"]
-# prefix=cnfdict["GOOGLE"]["prefix"]
-# dict=bl.getSearchResultFromGoogle(ejSearchURL=google_url,ejSearchText="riskpro pune review",ejSearchResultUpToPage=5)
+import GFL.ejListOperations as ejLst
+
 titleList=[]
 urlList = []
-newUrlList = []
 textList = []
-newRegulatoryUrlList = []
 
+# scrap data from google search pages.
 ejSearchContent= "dsk developers ltd"
 ejPageNumber=8
 search_url="https://www.google.co.in"
@@ -36,59 +24,32 @@ for pn in range(0,ejPageNumber):
     textList.extend(allTexts)
     titleList.extend(allTitle)
 
-print("==== all URLs ====", urlList)
-#print("==== all Text ====", textList)
-#print("==== all Titles ====", titleList)
-
 # read media sites data from excel
-#D:\Personal\ML\Data_science_repo
-#D:\Data Science\Manish_Sir_class\Data_science_repo\DataSheet\RiskPrediction2017.xlsx
 loc = (ejfo.getCurrentWorkingDirecotry()+"\RiskPrediction2017.xlsx")
 listOfMediaSites = bl.getMediaSitesDataFromExcelSheet(loc,"Media Sites")
-print("==== list of media sites data from excel ======")
-print(listOfMediaSites)
 
 # read regulatory sites data from excel
 listOfRegulatorySites = bl.getRegulatorySitesDataFromExcelSheet(loc,"Regulatory Websites")
-print("==== list of regulatory sites data from excel =====")
-print(listOfRegulatorySites)
 
-# get all URLs after splitting
-#urlListAfterSplit = bl.getAllUrlsAfterSpliting(ejList=urlList, ejSeparator='//',ejMaxSplit=1)[1]
+# perform data clean up on regulatory sites data from excel
+urlList1 = ejLst.getListAfterRemovingParticularCharSeq(ejList=listOfRegulatorySites, ejCharSeq='http://www.')
+urlList2 = ejLst.getListAfterRemovingParticularCharSeq(ejList=urlList1, ejCharSeq='https://www.')
+urlList3 = ejLst.getListAfterRemovingParticularCharSeq(ejList=urlList2, ejCharSeq='https://')
+urlList4 = ejLst.getListAfterRemovingParticularCharSeq(ejList=urlList3, ejCharSeq='www.')
+urlList5 = ejLst.getListAfterRemovingParticularCharSeq(ejList=urlList4, ejCharSeq='http://')
+urlList6 = ejLst.getListAfterRemovingParticularCharSeq(ejList=urlList5, ejCharSeq='\xa0')
 
-for i in urlList:
-    newUrlList.append(i.split('//', 1)[1].split('/', 1)[0])
+# perform split operation to retrieve only domain name.
+# finalRegUrlListAfterCleanup = []
+# for regUrl in urlList6:
+#     finalRegUrlListAfterCleanup.append(regUrl.split('/', 1)[0])
+finalRegUrlListAfterCleanup = ejLst.getListAfterSpliting(ejList=urlList6, ejSeparator='/', ejMaxSplit=1, ejSplitPart=0)
 
-print("===== split url list====", newUrlList)
-tempList = []
+# perform search in media site and regulatory list.
+urlsMatchedWithMediaSites = bl.getUrlsWithMediaOrRegulatoryWebsites(ejAllUrlList=urlList, ejMediaOrRegulatoryList=listOfMediaSites)
+urlsMatchedWithRegulatorySites = bl.getUrlsWithMediaOrRegulatoryWebsites(ejAllUrlList=urlList, ejMediaOrRegulatoryList=finalRegUrlListAfterCleanup)
 
-for i in listOfMediaSites:
-    if 'http' in i:
-        tempList.append(i.split('//', 1)[1].split('/', 1)[0].split('.', 1)[0])
-    tempList.append(i.split('.', 1)[0])
-
-print("===== extract domain name for media sites from excel===", tempList)
-
-
-
-#for i in listOfRegulatorySites:
-#    newRegulatoryUrlList.append(i.split('//', 1)[1].split('/', 1)[0])
-
-#print("===== split regulatory url list====", newRegulatoryUrlList)
-
-#for i in range(len(listOfMediaSites)):
-   # for j in newUrlList:
-  #      if listOfMediaSites[i]  == 'hindustantimes.com':
-  #          listWithFilter1.append(listOfMediaSites[i])
-    #if i == 'hindustantimes.com':
-
-
-
-# compare
-# verify keywords.
-
-#  #Add list to data frame
-# df = pd.DataFrame({'Titles': titleList, 'Links': urlList, 'Text': textList})
-# #dumping data into CSV.
-# df.to_csv('dskDeveloperInfoUpdated.csv', index=False, encoding='utf-8')
-
+print("==== matched urls with media sites===", urlsMatchedWithMediaSites)
+print("==== matched urls with regulatory sites===", urlsMatchedWithRegulatorySites)
+print("==== final list====", [*urlsMatchedWithMediaSites, *urlsMatchedWithRegulatorySites])
+print("==== final list count of links ====", len([*urlsMatchedWithMediaSites, *urlsMatchedWithRegulatorySites]))

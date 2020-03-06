@@ -2,6 +2,7 @@ import re
 
 import Money_Laundering_ML_Repo.Money_Laundering.BusinessLogic as bl
 import GFL.ejWebScraping as ejws
+import GFL.ejListOperations as ejLst
 
 listOfMediaSites = ['indiatimes.com', 'timesofindia.com', 'economictimes.com', 'indianexpress.com', 'financialexpress.com', 'dnaindia.com', 'hindustantimes.com', 'thehindu.com', 'sikkimexpress.com', 'manglatimes.com', 'ahmedabadmirror.com', 'arunachalfront.info', 'asianage.com', 'thehindubusinessline.com', 'business-standard.com', 'deccanchronicle.com', 'deccanherald.com', 'freepressjournal.in', 'orissapost.com', 'mid-day.com', 'livemint.com', 'mumbaimirror.com', 'jehlumpost.com', 'http://www.dailypioneer.com/', 'navhindtimes.in', 'newindianexpress.com', 'theshillongtimes.com', 'thestatesman.net', 'telegraphindia.com', 'tribuneindia.com', 'bangaloremirror.com', 'punemirror.com', 'CNN.com', 'theguardian.com', 'nytimes.com', 'dt.bh', 'thecairopost.com', 'jordantimes.com', 'arabianbusiness.com', 'arabtimesonline.com', 'omantribune.com', 'gulf-times.com', 'aljazeera.com', 'gulfnews.com', 'khaleejtimes.com', 'yobserver.com', 'tripolipost.com', 'israeltoday.co.il', 'jpost.com', 'washingtonpost.com', 'arabnews.com', 'tribune.com.pk', 'dawn.com', 'nation.com.pk', 'thestandard.com.hk', 'scmp.com', 'bbc.com', 'chinadaily.com.cn', 'latimes.com', 'telegraph.co.uk', 'wsj.com', 'independent.co.uk', 'finlandtimes.fi', 'thelocal.at', 'french-news-online.com', 'themoscowtimes.com', 'rt.com', 'rbth.com', 'chronicle.lu', 'businesspost.ie', 'irishexaminer.com', 'dailysabah.com', 'goodmorningturkey.com', 'http://www.hurriyetdailynews.com/']
 listOfRegulatorySites = ['http://cvc.nic.in/press.htm', 'https://www.sec.gov/news/pressreleases', 'http://www.sebi.gov.in/sebiweb/home/list/4/23/0/0/Press-Releases', 'https://www.justice.gov/criminal/press-room', 'http://www.incometaxindia.gov.in/Pages/press-releases.aspx', 'www.mahavat.gov.in/', 'www.comtax.cg.nic.in', '\xa0www.dvat.gov.in', 'www.goacomtax.gov.in/', 'www.commercialtax.gujarat.gov.in', 'www.haryanatax.com', 'https://hptax.gov.in', 'https://jkcomtax.gov.in', 'www.jharkhandcomtax.nic.in', '\xa0www.ctax.kar.nic.in', 'www.keralataxes.in/', 'https://mptax.mp.gov.in', '\xa0www.manipurvat.gov.in/', 'www.megvat.nic.in/', '\xa0https://orissatax.gov.in/', 'http://gst.puducherry.gov.in/', 'www.pextax.com', 'www.rajtax.gov.in', 'www.tnvat.gov.in', 'www.gov.ua.nic.in/tradetax/', '\xa0www.tradetax.up.nic.in', 'www.wbcomtax.nic.in', 'fiuindia.gov.in', 'www.enforcementdirectorate.gov.in', 'www.dri.nic.in/']
@@ -13,6 +14,8 @@ allUrls = ['https://en.wikipedia.org/wiki/DSK_Group', 'https://www.hindustantime
 urlReg1 = []
 for regSiteUrl1 in listOfRegulatorySites:
     urlReg1.append(re.sub('http://www.', '', regSiteUrl1))
+
+print("=== using generic functions =====", ejLst.getListAfterRemovingParticularCharSeq(ejList=listOfRegulatorySites, ejCharSeq='http://www.'))
 
 urlReg2 = []
 for regSiteUrl2 in urlReg1:

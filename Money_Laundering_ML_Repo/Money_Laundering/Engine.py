@@ -40,9 +40,6 @@ urlList5 = ejLst.getListAfterRemovingParticularCharSeq(ejList=urlList4, ejCharSe
 urlList6 = ejLst.getListAfterRemovingParticularCharSeq(ejList=urlList5, ejCharSeq='\xa0')
 
 # perform split operation to retrieve only domain name.
-# finalRegUrlListAfterCleanup = []
-# for regUrl in urlList6:
-#     finalRegUrlListAfterCleanup.append(regUrl.split('/', 1)[0])
 finalRegUrlListAfterCleanup = ejLst.getListAfterSpliting(ejList=urlList6, ejSeparator='/', ejMaxSplit=1, ejSplitPart=0)
 
 # perform search in media site and regulatory list.

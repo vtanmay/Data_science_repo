@@ -1,0 +1,13 @@
+====== simple-and-multiple-linear-regression ======
+https://towardsdatascience.com/simple-and-multiple-linear-regression-with-python-c9ab422ec29c
+
+====== some interesting topics ====
+1. NLP - Natural language processing - Chatbot - Mitsuku chatbot.
+2. Image recognition - CAFFE is a deep learning framework, originally developed at University of California, Berkeley.
+ It is open source, under a BSD license. It is written in C++, with a Python interface.
+ https://caffe.berkeleyvision.org/
+3. Alpha Go - AlphaGo is the first computer program to defeat a professional human Go player.
+AlphaGo is a computer program that plays the board game Go.
+It was developed by DeepMind Technologies which was later acquired by Google.
+
+

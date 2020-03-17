@@ -2,6 +2,7 @@ from sklearn.linear_model import LinearRegression
 
 import GFL.ejPanda as ejpd
 import numpy as np
+import GFL.ejListOperations as ejlst
 
 def getRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None, ejDVName=None):
     dictRegStats = {}
@@ -30,6 +31,14 @@ def getRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None,
     slope = model.coef_
     # intercept - intercept coefficient - Beta not
     intercept = model.intercept_
-    # regression equation
+    # regression equation - y=3.413x+19.99
     regression_equation = "y="+str(slope)+"x+"+str(intercept)
+    # calculating y predicted / y hat
+    y_predicted = [(3.413*k)+19.99 for k in x]
+    # yi- y hat
+    error_i = ejlst.getListAfterSubtractingTwoLists(ejListOne=y, ejListTwo=y_predicted)
+    error_square_i = [np.square(i) for i in error_i]
+    # sse
+    sse_y = sum(error_square_i)
+
     return dictRegStats

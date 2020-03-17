@@ -3,6 +3,7 @@ from sklearn.linear_model import LinearRegression
 import GFL.ejPanda as ejpd
 import numpy as np
 import GFL.ejListOperations as ejlst
+import GFL.ejFileOperations as ejfo
 
 def getRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None, ejDVName=None):
     dictRegStats = {}
@@ -40,5 +41,13 @@ def getRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None,
     error_square_i = [np.square(i) for i in error_i]
     # sse
     sse_y = sum(error_square_i)
+    # pop std dev
+    popluation_std_dev = np.std(y)
 
+    # read file
+    sampleDf = ejpd.readXLSFile(ejfo.getCurrentWorkingDirecotry()+"\ClaimsVsPayment.xlsx", "sample_data")
+    # independent variable list
+    y_sample = ejpd.getColumnDataAsAListFromTable(ejDataFrame=sampleDf, ejOptColumnIndex=1)
+    # sample std dev
+    sample_std_dev = np.std(y_sample)
     return dictRegStats

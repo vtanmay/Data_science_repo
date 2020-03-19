@@ -4,6 +4,7 @@ import GFL.ejPanda as ejpd
 import numpy as np
 import GFL.ejListOperations as ejlst
 import GFL.ejFileOperations as ejfo
+from scipy.stats import pearsonr
 
 def getRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None, ejDVName=None):
     dictRegStats = {}
@@ -50,4 +51,11 @@ def getRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None,
     y_sample = ejpd.getColumnDataAsAListFromTable(ejDataFrame=sampleDf, ejOptColumnIndex=1)
     # sample std dev
     sample_std_dev = np.std(y_sample)
+
+    #  Covariance - All you can really tell from covariance is if there is a positive or negative relationship.
+    # A problem with covariance as a statistical tool alone is that it is challenging to interpret. This leads us to the Pearson’s correlation coefficient
+    # Correlation - will give you a value for the relationship. 1 is perfect correlation and 0 is no correlation
+    # calculate covaraince and Pearson correlation coefficient - https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/
+    # calculate Pearson's correlation
+    corrCoef = pearsonr(x, y)
     return dictRegStats

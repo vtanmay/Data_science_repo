@@ -1,5 +1,6 @@
 ====== simple-and-multiple-linear-regression ======
-https://towardsdatascience.com/simple-and-multiple-linear-regression-with-python-c9ab422ec29c
+1. https://towardsdatascience.com/simple-and-multiple-linear-regression-with-python-c9ab422ec29c
+2. calculate covariance and Pearson correlation coefficient - https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/
 
 ====== some interesting topics ====
 1. NLP - Natural language processing - Chatbot - Mitsuku chatbot.

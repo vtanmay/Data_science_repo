@@ -1,7 +1,10 @@
 ====== simple-and-multiple-linear-regression ======
 1. https://towardsdatascience.com/simple-and-multiple-linear-regression-with-python-c9ab422ec29c
 2. calculate covariance and Pearson correlation coefficient - https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/
-
+3. Model over fitting - model will work very good on train data but will fail on unseen data.
+4. adjusted R-squared - R squared is constant and adjusted R squared starts decreasing means we are adding too many predictors/
+ independent variables in the model.
+ 
 ====== some interesting topics ====
 1. NLP - Natural language processing - Chatbot - Mitsuku chatbot.
 2. Image recognition - CAFFE is a deep learning framework, originally developed at University of California, Berkeley.

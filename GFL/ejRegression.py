@@ -54,15 +54,17 @@ def getRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None,
     #  Covariance - All you can really tell from covariance is if there is a positive or negative relationship.
     covariance = np.cov(x, y)
     cov_y = round(covariance[1][0],2)
-    # A problem with covariance as a statistical tool alone is that it is challenging to interpret.
-    # This leads us to the Pearson’s correlation coefficient
-    # Correlation - will give you a value for the relationship. 1 is perfect correlation and 0 is no correlation
-    # calculate covaraince and Pearson correlation coefficient - https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/
-    # calculate Pearson's correlation - The pearsonr() SciPy function can be used to calculate the Pearson’s correlation
-    # coefficient between two data samples with the same length
+    # A problem with covariance as a statistical tool alone is that it is challenging to interpret. This leads us to
+    # the Pearson’s correlation coefficient Correlation - will give you a value for the relationship. 1 is perfect
+    # correlation and 0 is no correlation calculate covariance and Pearson correlation coefficient -
+    # https://machinelearningmastery.com/how-to-use-correlation-to-understand-the-relationship-between-variables/
+    # calculate Pearson's correlation - The pearsonr() SciPy function can be used to calculate the Pearson’s
+    # correlation coefficient between two data samples with the same length
     corrCoef, _ = pearsonr(x, y)
     pearsons_r = round(corrCoef,2)
-    # Model Performance : Compute R-Square(=1 best fit)
+    # Model Performance : Compute R-Square(=1 best fit, R-Square = 1 - sse/sst) R square - it is a statistical
+    # measure of how close the data are to the fitted regression line. It is also known as the coefficient of
+    # determination
     model_score_R_square = round(model.score(X,Y), 2)
     # creating dictionary
     dictRegStats = {'x':x, 'y':y, 'mean_x':mean_x, 'mean_y':mean_y,

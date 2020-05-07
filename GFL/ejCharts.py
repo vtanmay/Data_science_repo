@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 from pandas.plotting import scatter_matrix
+import seaborn as sns
 
 
 def drawScatterPlot(ejXAxisValList=None, ejYAxisValList=None, ejXAxisLabel="X", ejYAxisLabel="Y"):
@@ -25,6 +26,9 @@ def drawMultiLineChart(ejXSeries=None,ejNDYArray=None,ejYLineColorArr=['skyblue'
 def drawScatteredMatrixPlot(ejDataFrame=None,):
      scatter_matrix(ejDataFrame, alpha=1,color="red", figsize=(10, 10),diagonal = 'kde')
      plt.show()
+
+def drawRegressionLine(ejIv, ejDv, ejData):
+     sns.lmplot(ejIv, ejDv, data=ejData, truncate=True)
 
 
 # df=ejpd.getDataFrameFromCSV(ejCSVFile="F:\ML\eJagruti-ML\Correlation\BeautyContextResult.csv")

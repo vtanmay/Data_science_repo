@@ -6,7 +6,7 @@ import GFL.ejListOperations as ejlst
 import GFL.ejFileOperations as ejfo
 from scipy.stats import pearsonr
 
-def getRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None, ejDVName=None):
+def getLinearRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None, ejDVName=None):
     # read file
     df = ejpd.readXLSFile(ejCSVFilePath, ejSheetName)
     # independent variable list
@@ -75,3 +75,20 @@ def getRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None,
                     'error_y':error_y,'error_square_y':error_square_y,
                     'model_score_R_square':model_score_R_square}
     return dictRegStats
+
+def getLinearRegressionStatistics(ejFeatureArray=None, ejTargetArray=None):
+    # fitting regression model
+    model = LinearRegression()
+    model.fit(ejFeatureArray,ejTargetArray)
+    # slope - regression coefficient - Beta one
+    slope = model.coef_
+    # intercept - intercept coefficient - Beta not
+    intercept = model.intercept_
+    # regression equation
+    regression_equation = "y=" + str(slope) + "x+" + str(intercept)
+    model_score_R_square = round(model.score(ejFeatureArray, ejTargetArray), 2)
+    # creating dictionary
+    dictRegStats = {'regression_equation': regression_equation,
+                    'model_score_R_square': model_score_R_square}
+    return dictRegStats
+

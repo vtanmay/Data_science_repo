@@ -29,6 +29,7 @@ def drawScatteredMatrixPlot(ejDataFrame=None,):
 
 def drawRegressionLine(ejIv, ejDv, ejData):
      sns.lmplot(ejIv, ejDv, data=ejData, truncate=True)
+     plt.show()
 
 
 # df=ejpd.getDataFrameFromCSV(ejCSVFile="F:\ML\eJagruti-ML\Correlation\BeautyContextResult.csv")

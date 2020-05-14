@@ -227,6 +227,17 @@ def getAllNumericDataTypeColNames(ejDataframe=None):
             numerical_columns.append(col)
     return numerical_columns
 
+def getAllColumnNames(ejDataframe=None):
+    return ejDataframe.columns
+
+def getDataframeShape(ejDataframe=None):
+    return ejDataframe.shape
+
+def getDataframeAfterRemovingNaNValues(ejDataframe=None):
+    return ejDataframe.dropna()
+
+
+
 #---------------------------
 
 

@@ -1,0 +1,9 @@
+1. To navigate to the place of your last edit:﻿
+Press Ctrl+Shift+Backspace .
+From the main menu, choose Navigate | Last Edit Location.
+
+2. CTRL + BACKSPACE - to delete a line
+
+3. CTRL + F12 - To see members in a file.
+
+4.

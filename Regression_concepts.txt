@@ -21,7 +21,7 @@ will give you a value for the relationship. 1 is perfect
 7. Collinearity -  is a condition in which some of the independent variables are highly correlated.
 --- how to detect multicollinearity - find out correlation coefficients between independent variables.
 # if correlation coef is greater than 0.7 or less than -0.7, then we can say there is multicollinearity.
-# instead of looking at the collineairy matrix, we can use VIF - Variance Inflation Factor.
+# instead of looking at the collinearity matrix, we can use VIF - Variance Inflation Factor.
 VIF is applied on a model , and not on variables.
 
 ==== overall flow =====

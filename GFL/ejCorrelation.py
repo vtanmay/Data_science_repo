@@ -100,4 +100,8 @@ class Correlation:
                 fig = px.scatter(x=ej_ivlist, y=ej_dvlist)
                 fig.show()
 
+    class Collinearity:
+        def getCorrelationMatrix(ejDataFrame=None):
+            return ejDataFrame.corr()
+
 

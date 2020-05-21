@@ -31,6 +31,26 @@ def drawRegressionLine(ejIv, ejDv, ejData):
      sns.lmplot(ejIv, ejDv, data=ejData, truncate=True)
      plt.show()
 
+def draw3DGraph(ejDataFrame=None,ejFisrtColumn=None, ejSecondColumn=None, ejThirdColumn=None, ejDv=None):
+     fig = plt.figure(figsize=(16, 9))
+     ax = fig.gca(projection="3d")
+
+     plot = ax.scatter(ejDataFrame[ejFisrtColumn],
+                       ejDataFrame[ejSecondColumn],
+                       ejDataFrame[ejThirdColumn],
+                       linewidth=1, edgecolor="k",
+                       c=ejDataFrame[ejDv], s=100, cmap="hot")
+
+     ax.set_xlabel(ejFisrtColumn)
+     ax.set_ylabel(ejSecondColumn)
+     ax.set_zlabel(ejThirdColumn)
+
+     lab = fig.colorbar(plot, shrink=.5, aspect=5)
+     lab.set_label(ejDv, fontsize=15)
+
+     plt.title("3D plot for "+ ejFisrtColumn+" ,"+ ejSecondColumn+ " and "+ejThirdColumn, color="red")
+     plt.show()
+
 
 # df=ejpd.getDataFrameFromCSV(ejCSVFile="F:\ML\eJagruti-ML\Correlation\BeautyContextResult.csv")
 # drawScatteredMatrixPlot(ejDataFrame=df)

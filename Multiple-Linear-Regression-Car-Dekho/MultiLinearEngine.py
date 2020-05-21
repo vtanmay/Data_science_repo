@@ -6,6 +6,8 @@ import GFL.ejRegression as ejReg
 import GFL.ejCharts as ejCharts
 import GFL.ejCorrelation as ejCor
 from GFL.ejCorrelation import Correlation
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
 # Car dekho Kaggle data.
 # https://www.kaggle.com/nehalbirla/vehicle-dataset-from-cardekho/data?select=car+data.csv
 
@@ -45,5 +47,10 @@ CorrMatrix =  Correlation.Collinearity.getCorrelationMatrix(ejDataFrame=carData)
 
 # 8. split Dataset into train and test.
 X_train,X_test,y_train,y_test = ejDataOp.getTrainAndTestData(ejFeatureArray=X, ejTargetArray=y)
+
+# draw 3D graph with critical features.
+ejCharts.draw3DGraph(ejDataFrame=carData, ejFisrtColumn="Year", ejSecondColumn="Present_Price", ejThirdColumn="Kms_Driven", ejDv="Selling_Price")
+
+
 
 

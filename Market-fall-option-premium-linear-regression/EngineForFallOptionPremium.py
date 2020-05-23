@@ -1,4 +1,4 @@
-
+from sklearn.linear_model import LinearRegression
 
 import GFL.ejPanda as ejpd
 import GFL.ejFileOperations as ejfo
@@ -23,7 +23,8 @@ X_train,X_test,y_train,y_test = ejDataOp.getTrainAndTestData(ejFeatureArray=X, e
 #print("== X test shape 20% of data== ", X_test.shape)
 
 # Build a model on train data.
-regStats = ejReg.getLinearRegressionStatistics(ejFeatureArrayTrain=X_train,ejTargetArrayTrain=y_train,ejFeatureArrayTest=X_test,ejTargetArrayTest=y_test)
+model = LinearRegression();
+regStats = ejReg.getRegressionStatistics(ejModel=model, ejFeatureArrayTrain=X_train,ejTargetArrayTrain=y_train,ejFeatureArrayTest=X_test,ejTargetArrayTest=y_test)
 print("=== graph equation ===", regStats['regression_equation'])
 print("=== train data model R square ===", regStats['model_score_R_square_train'])
 print("=== test data R square ===", regStats['model_score_R_square_test'])

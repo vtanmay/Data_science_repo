@@ -1,0 +1,11 @@
+===== pluralsight python ===
+
+https://app.pluralsight.com/courses/34f42219-eafe-438a-832b-2d8ff8875a15
+
+https://app.pluralsight.com/courses/f6337f97-76cb-40a7-af30-fa4d552f5c76
+
+https://app.pluralsight.com/courses/65568293-3622-4a80-87f5-c4134032bf38
+
+== python web scraping ==
+
+https://app.pluralsight.com/library/courses/web-scraping-python-data-playbook/table-of-contents

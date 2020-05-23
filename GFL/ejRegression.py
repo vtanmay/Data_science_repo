@@ -76,19 +76,18 @@ def getLinearRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName
                     'model_score_R_square':model_score_R_square}
     return dictRegStats
 
-def getLinearRegressionStatistics(ejFeatureArrayTrain=None, ejTargetArrayTrain=None, ejFeatureArrayTest=None, ejTargetArrayTest=None):
+def getRegressionStatistics(ejModel = None, ejFeatureArrayTrain=None, ejTargetArrayTrain=None, ejFeatureArrayTest=None, ejTargetArrayTest=None):
     # fitting regression model
-    model = LinearRegression()
-    model.fit(ejFeatureArrayTrain,ejTargetArrayTrain)
+    ejModel.fit(ejFeatureArrayTrain,ejTargetArrayTrain)
     # slope - regression coefficient - Beta one
-    slope = model.coef_
+    slope = ejModel.coef_
     # intercept - intercept coefficient - Beta not
-    intercept = model.intercept_
+    intercept = ejModel.intercept_
     # regression equation
     regression_equation = "y=" + str(slope) + "x+" + str(intercept)
-    model_score_R_square_train = round(model.score(ejFeatureArrayTrain, ejTargetArrayTrain), 2)
+    model_score_R_square_train = round(ejModel.score(ejFeatureArrayTrain, ejTargetArrayTrain), 2)
     # predict for test data
-    y_pred = model.predict(ejFeatureArrayTest)
+    y_pred = ejModel.predict(ejFeatureArrayTest)
     # calculate sse sst and r square for test data
     sse = sum((ejTargetArrayTest-y_pred)**2)
     sst = sum((ejTargetArrayTest-np.mean(ejTargetArrayTrain))**2)

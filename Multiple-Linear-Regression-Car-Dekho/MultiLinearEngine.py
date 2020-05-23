@@ -1,3 +1,4 @@
+from sklearn.linear_model import LinearRegression
 
 import GFL.ejPanda as ejpd
 import GFL.ejFileOperations as ejfo
@@ -49,7 +50,13 @@ CorrMatrix =  Correlation.Collinearity.getCorrelationMatrix(ejDataFrame=carData)
 X_train,X_test,y_train,y_test = ejDataOp.getTrainAndTestData(ejFeatureArray=X, ejTargetArray=y)
 
 # draw 3D graph with critical features.
-ejCharts.draw3DGraph(ejDataFrame=carData, ejFisrtColumn="Year", ejSecondColumn="Present_Price", ejThirdColumn="Kms_Driven", ejDv="Selling_Price")
+#ejCharts.draw3DGraph(ejDataFrame=carData, ejFisrtColumn="Year", ejSecondColumn="Present_Price", ejThirdColumn="Kms_Driven", ejDv="Selling_Price")
+
+# Apply linear reg model on train.
+model = LinearRegression();
+regStats = ejReg.getRegressionStatistics(ejModel=model, ejFeatureArrayTrain=X_train,ejTargetArrayTrain=y_train,ejFeatureArrayTest=X_test,ejTargetArrayTest=y_test)
+print("=== train data model R square ===", regStats['model_score_R_square_train'])
+print("=== test data R square ===", regStats['model_score_R_square_test'])
 
 
 

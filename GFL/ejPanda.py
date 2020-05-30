@@ -239,6 +239,9 @@ def getDataframeAfterRemovingNaNValues(ejDataframe=None):
 def getOneHotEncodedFeatureMatrix(ejFeatureMatrix=None,ejColumnNameList=None):
     return pd.get_dummies(ejFeatureMatrix,columns=ejColumnNameList,drop_first=True)
 
+def getDataframe(ejData=None):
+    return pd.DataFrame(ejData)
+
 
 #---------------------------
 

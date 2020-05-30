@@ -80,11 +80,11 @@ def getRegressionStatistics(ejModel = None, ejFeatureArrayTrain=None, ejTargetAr
     # fitting regression model
     ejModel.fit(ejFeatureArrayTrain,ejTargetArrayTrain)
     # slope - regression coefficient - Beta one
-    slope = ejModel.coef_
+    #slope = ejModel.coef_
     # intercept - intercept coefficient - Beta not
-    intercept = ejModel.intercept_
+    #intercept = ejModel.intercept_
     # regression equation
-    regression_equation = "y=" + str(slope) + "x+" + str(intercept)
+    #regression_equation = "y=" + str(slope) + "x+" + str(intercept)
     model_score_R_square_train = round(ejModel.score(ejFeatureArrayTrain, ejTargetArrayTrain), 2)
     # predict for test data
     y_pred = ejModel.predict(ejFeatureArrayTest)
@@ -93,8 +93,7 @@ def getRegressionStatistics(ejModel = None, ejFeatureArrayTrain=None, ejTargetAr
     sst = sum((ejTargetArrayTest-np.mean(ejTargetArrayTrain))**2)
     r2 = round(1 - sse / sst,2)
     # creating dictionary
-    dictRegStats = {'regression_equation': regression_equation,
-                    'model_score_R_square_train': model_score_R_square_train,
+    dictRegStats = {'model_score_R_square_train': model_score_R_square_train,
                     'y predicted': y_pred,
                     'SSE':sse,
                     'SST':sst,

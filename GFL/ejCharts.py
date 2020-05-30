@@ -1,7 +1,10 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+from numpy import dot
 from pandas.plotting import scatter_matrix
 import seaborn as sns
+from sklearn.tree import export_graphviz # provides tree in the form of .dot . we convert it into .png and then display.
+from IPython.display import Image
 
 
 def drawScatterPlot(ejXAxisValList=None, ejYAxisValList=None, ejXAxisLabel="X", ejYAxisLabel="Y"):
@@ -31,6 +34,16 @@ def drawRegressionLine(ejIv, ejDv, ejData):
      sns.lmplot(ejIv, ejDv, data=ejData, truncate=True)
      plt.show()
 
+def drawPredictionVsActualGraph(ejTargetArrayTest=None, ejPredictionDataframe=None, ejDv=None):
+     test_index = ejTargetArrayTest.reset_index()[ejDv]
+     ax = test_index.plot(label="actuals", figsize=(12, 6), linewidth=2, color="r")
+     ax = ejPredictionDataframe[0].plot(label="predictions", figsize=(12, 6), linewidth=2, color="g")
+     plt.legend(loc='upper right')
+     plt.title("ACTUALS VS PREDICTIONS")
+     plt.xlabel("index")
+     plt.ylabel("values")
+     plt.show()
+
 def draw3DGraph(ejDataFrame=None,ejFisrtColumn=None, ejSecondColumn=None, ejThirdColumn=None, ejDv=None):
      fig = plt.figure(figsize=(16, 9))
      ax = fig.gca(projection="3d")
@@ -49,6 +62,16 @@ def draw3DGraph(ejDataFrame=None,ejFisrtColumn=None, ejSecondColumn=None, ejThir
      lab.set_label(ejDv, fontsize=15)
 
      plt.title("3D plot for "+ ejFisrtColumn+" ,"+ ejSecondColumn+ " and "+ejThirdColumn, color="red")
+     plt.show()
+
+def drawDecisionTree(ejModel = None,ejFeatureNames=None):
+     export_graphviz(ejModel, out_file='Regtree.dot', feature_names=ejFeatureNames)
+     # using shell command to convert .dot file to .png file
+   #  ! dot - Tpng Regtree.dot - o Regtree.png
+     Image("Regtree.png")
+
+def drawHistogram(ejDataFrame=None, ejColumn=None):
+     ejDataFrame.ejColumn.hist()
      plt.show()
 
 

@@ -101,7 +101,7 @@ def getRegressionStatistics(ejModel = None, ejFeatureArrayTrain=None, ejTargetAr
                     'model_score_R_square_test':r2}
     return dictRegStats
 
-def getGridSearchCvStats(ejModel = None, ejFeatureArrayTrain=None, ejTargetArrayTrain=None,ejParameters=None,ejCv=10):
+def getGridSearchCvStats(ejModel = None, ejFeatureArrayTrain=None, ejTargetArrayTrain=None,ejParameters=None,ejCv=5):
     grid = GridSearchCV(estimator=ejModel, param_grid=ejParameters, cv=ejCv)
     grid.fit(ejFeatureArrayTrain, ejTargetArrayTrain)
     bestParam = grid.best_params_

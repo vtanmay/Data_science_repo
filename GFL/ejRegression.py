@@ -5,6 +5,7 @@ import numpy as np
 import GFL.ejListOperations as ejlst
 import GFL.ejFileOperations as ejfo
 from scipy.stats import pearsonr
+from sklearn.model_selection import GridSearchCV
 
 def getLinearRegressionStatistics(ejCSVFilePath=None, ejSheetName=None, ejIVName=None, ejDVName=None):
     # read file
@@ -100,3 +101,12 @@ def getRegressionStatistics(ejModel = None, ejFeatureArrayTrain=None, ejTargetAr
                     'model_score_R_square_test':r2}
     return dictRegStats
 
+def getGridSearchCvStats(ejModel = None, ejFeatureArrayTrain=None, ejTargetArrayTrain=None,ejParameters=None,ejCv=10):
+    grid = GridSearchCV(estimator=ejModel, param_grid=ejParameters, cv=ejCv)
+    grid.fit(ejFeatureArrayTrain, ejTargetArrayTrain)
+    bestParam = grid.best_params_
+    bestGridScore = grid.best_score_
+    gridSearchCvDict = { 'best_parameter': bestParam,
+                         'best_grid_score': bestGridScore
+    }
+    return gridSearchCvDict

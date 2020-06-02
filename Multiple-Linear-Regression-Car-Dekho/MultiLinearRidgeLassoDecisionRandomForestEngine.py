@@ -1,5 +1,5 @@
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.tree import DecisionTreeRegressor
 
 import GFL.ejPanda as ejpd
@@ -11,6 +11,8 @@ import GFL.ejCorrelation as ejCor
 from GFL.ejCorrelation import Correlation
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
+import numpy as np
+
 # Car dekho Kaggle data.
 # https://www.kaggle.com/nehalbirla/vehicle-dataset-from-cardekho/data?select=car+data.csv
 
@@ -77,12 +79,41 @@ print("=== train data model R square decision tree reg ===", regStats['model_sco
 print("=== test data R square decision tree reg ===", regStats['model_score_R_square_test'])
 
 # Apply random forest reg model on train.
-# Try with different hyperparameter - max_depth=4, 6. if we increase max depth, R2 will improve.
+# Try with different hyper parameter - max_depth=4, 6. if we increase max depth, R2 will improve.
 model_random_forest_reg = RandomForestRegressor(n_estimators = 100, random_state = 42)
 regStats = ejReg.getRegressionStatistics(ejModel=model_random_forest_reg, ejFeatureArrayTrain=X_train,ejTargetArrayTrain=y_train,ejFeatureArrayTest=X_test,ejTargetArrayTest=y_test)
 print("=== train data model R square random forest reg ===", regStats['model_score_R_square_train'])
 print("=== test data R square random forest reg ===", regStats['model_score_R_square_test'])
 
+# Apply Ridge model.
+model_ridge = Ridge()
+# select alpha range
+alphas = np.logspace(-3,3,num=14) # range for alpha
+# parameters = {'alpha': [1e-15, 1e-10, 1e-8, 1e-4, 1e-3,1e-2, 1, 5, 10, 20]}
+#print("alpha range ===", alphas)
+# apply grid search CV to get best parameters.
+gridSearchCvStats = ejReg.getGridSearchCvStats(ejModel=model_ridge,ejFeatureArrayTrain=X_train,ejTargetArrayTrain=y_train,ejParameters=dict(alpha=alphas),ejCv=5)
+print("==== Grid search cv best param ridge ===", gridSearchCvStats['best_parameter'])
+print("==== Grid search cv best score ridge ===", gridSearchCvStats['best_grid_score'])
+# use the best value of alpha to perform ridge reg.
+model_ridge_with_best_param = Ridge(alpha=0.024, normalize=True)
+regStats = ejReg.getRegressionStatistics(ejModel=model_ridge_with_best_param, ejFeatureArrayTrain=X_train,ejTargetArrayTrain=y_train,ejFeatureArrayTest=X_test,ejTargetArrayTest=y_test)
+print("=== train data model R square ridge reg ===", regStats['model_score_R_square_train'])
+print("=== test data R square ridge reg ===", regStats['model_score_R_square_test'])
+
+# apply lasso model.
+model_lasso = Lasso()
+alphas = np.logspace(-3,3,num=14) # range for alpha
+# parameters = {'alpha': [1e-15, 1e-10, 1e-8, 1e-4, 1e-3,1e-2, 1, 5, 10, 20]}
+# apply grid search CV to get best parameters.
+gridSearchCvStats = ejReg.getGridSearchCvStats(ejModel=model_lasso,ejFeatureArrayTrain=X_train,ejTargetArrayTrain=y_train,ejParameters=dict(alpha=alphas),ejCv=5)
+print("==== Grid search cv best param lasso ===", gridSearchCvStats['best_parameter'])
+print("==== Grid search cv best score lasso ===", gridSearchCvStats['best_grid_score'])
+# use the best value of alpha to perform lasso reg.
+model_lasso_with_best_param = Lasso(alpha=0.001, normalize=True)
+regStats = ejReg.getRegressionStatistics(ejModel=model_lasso_with_best_param, ejFeatureArrayTrain=X_train,ejTargetArrayTrain=y_train,ejFeatureArrayTest=X_test,ejTargetArrayTest=y_test)
+print("=== train data model R square lasso reg ===", regStats['model_score_R_square_train'])
+print("=== test data R square lasso reg ===", regStats['model_score_R_square_test'])
 
 
 

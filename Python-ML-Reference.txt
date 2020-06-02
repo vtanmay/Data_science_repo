@@ -21,7 +21,7 @@ It was developed by DeepMind Technologies which was later acquired by Google.
 4. https://youtu.be/4OZip0cgOho
 5. divide ur time 50-50 to work on ur project and to explore other people's work.
 6. try to understand the source code of algo, so its easy to undertand math behind it.
-7. start with liear regression and k means clustering algorithms.
+7. start with linear regression and k means clustering algorithms.
 8. explore deep learning , NLP, Computer vision concepts.
 9. an hour per day - for data science foundation - https://youtu.be/4OZip0cgOho
 10. study for 30 min to 3 hours a day . not more than that.

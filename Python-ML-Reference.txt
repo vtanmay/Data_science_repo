@@ -16,6 +16,39 @@ It was developed by DeepMind Technologies which was later acquired by Google.
 
 ===== how to learn data science =====
 1. learn python and basics of statistics.
+-- basic syntax , loops
+-- OOPS
+-- Numpy - array manipulations - reshape arrays, indexing.
+-- pandas - learn in depth. very useful in data processing. data frame, data series
+-- feature engineering / feature selection side - handle missing values, scaling
+-- statistics -
+-- visualization - matplotlib, seaborn
+-- do EDA in depth - try to find as much info as possible from the data set and document it.
+-- learn scaling technique like min max, standard, log etc.
+-- understand ML algo 15-20 algos- understand math behind it, theortical concepts
+-- hyper perameter tuning - gris search cv , randmomized search cv
+-- deployment of ML model - azure, awcc2, google cloud etc.
+
+Deep learning -
+main 3 algos
+Neural networks -
+1. artificial neural network
+2. Recurrent neural network / RNN
+3. Convolutional neural network / CNN
+
+IMP libraries for deep learning
+1. TensorFlow
+2. Keras - its a wrapper on tensore flow. used to create API and expose it to external users.
+
+DB -
+1. SQL - needed for data collection phase.
+2. Mongo DB - its a NO SQL DB.
+
+Visualization tools -
+Tableu
+power bi
+
+
 2. do real world projects to understand concepts better.
 3. use Kaggle for data sets and start exploring.
 4. https://youtu.be/4OZip0cgOho

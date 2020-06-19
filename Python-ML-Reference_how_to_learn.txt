@@ -26,13 +26,13 @@ It was developed by DeepMind Technologies which was later acquired by Google.
 -- do EDA in depth - try to find as much info as possible from the data set and document it.
 -- learn scaling technique like min max, standard, log etc.
 -- understand ML algo 15-20 algos- understand math behind it, theortical concepts
--- hyper perameter tuning - gris search cv , randmomized search cv
+-- hyper perameter tuning - grid search cv , randmomized search cv
 -- deployment of ML model - azure, awcc2, google cloud etc.
 
-Deep learning -
+==== Deep learning ======
 main 3 algos
 Neural networks -
-1. artificial neural network
+1. artificial neural network / ANN
 2. Recurrent neural network / RNN
 3. Convolutional neural network / CNN
 
@@ -59,4 +59,32 @@ power bi
 9. an hour per day - for data science foundation - https://youtu.be/4OZip0cgOho
 10. study for 30 min to 3 hours a day . not more than that.
 
+========= how to learn ML algorith step by step process =====
 
+1. understand maths behind ML algorithm - concepts used in algo like entropy , information gain, eucledean distance etc.
+dont need to remeber any of the mathematical formulas.
+2. understand how algo works for numerical data and categorical data. for eg - in decision tree algo, different concept is used to do split
+for numerical data and a different concept to split categorical data.
+3. understand how algo works for text data.
+     a. Stemming and  Lemmatization
+     b. Bag of words
+     c. TF-DIF
+     d. Word2Vec for eg - Naive biase will work well for numerical, categrical, text all
+4. understand which algos work for which type of problems. few algos work for both regression & classification like decision tree
+Naive bayes , logistic regression work for classification like that.
+if one algo works for regression, check how that algo works for classification. there will be a minute diff wrt to maths involved.
+5. underfiting and overfiting. hyper parameter tuning. few algos require some specific set of hyper parameters.
+for eg- decision tree - splits nodes till the end. but it may not require so we can specifiy the depth. called as decision tree pruning.
+6. impact of imbalaned data set on algo
+Binary Classification Problem
+    b. Feature engineering techniques -
+          # Up-sampling
+          # Down-sampling
+
+sometimes, we dnt need to handle it in feature engineering section. some algos have that hyper parameter which we can use to handle this.
+7. Impact of Outliers, How to treat them?
+8.  For which Algorithm, feature Scaling/Normalization is required w.r.t Datasets:-
+    a. DT, Random Forest, XGBoost, Gradient Boosting, ADABoost - Not required
+    b. Linear Regression, Logistic Regression - Required.
+9. eg- logistic regression / Naive bayes can be used for binary classification problems. check how we can use it for multi class classification problems as well.
+10. Time complexity of algo. means how much time it takes , best case and worst case. most imp to know for interview.

@@ -70,8 +70,12 @@ def drawDecisionTree(ejModel = None,ejFeatureNames=None):
    #  ! dot - Tpng Regtree.dot - o Regtree.png
      Image("Regtree.png")
 
-def drawHistogram(ejDataFrame=None, ejColumn=None):
-     ejDataFrame.ejColumn.hist()
+def drawPairPlot(ejData=None):
+     sns.pairplot(data=ejData)
+     plt.show()
+
+def drawHeatMap(ejCondition=None,ejCmap='viridis'):
+     sns.heatmap(data=ejCondition,cmap=ejCmap)
      plt.show()
 
 

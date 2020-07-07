@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+from scipy.stats import ttest_1samp
+
 class Statistics:
     def __NormalizeAllColumns(self, dataframe):
         var = {}
@@ -44,3 +46,11 @@ class Statistics:
         if ej_csvfilepath is None and ej_list is not None:
             serIV = ej_list
             return self.__doAnalysis(self,ejSerIV=serIV)
+
+    def perform1SampleTtest(self,ejSample,ejPopulationMean):
+        ttest, p_value = ttest_1samp(ejSample, ejPopulationMean)
+        return ttest, p_value
+
+
+def perform1SampleTtest(sample, population_mean):
+    return None

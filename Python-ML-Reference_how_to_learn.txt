@@ -59,7 +59,7 @@ power bi
 9. an hour per day - for data science foundation - https://youtu.be/4OZip0cgOho
 10. study for 30 min to 3 hours a day . not more than that.
 
-========= how to learn ML algorith step by step process =====
+========= how to learn ML algorithm step by step process =====
 
 1. understand maths behind ML algorithm - concepts used in algo like entropy , information gain, eucledean distance etc.
 dont need to remeber any of the mathematical formulas.
